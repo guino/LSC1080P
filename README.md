@@ -55,7 +55,7 @@ This is a quick review of pros and cons of this device:
 
 #### Conclusion 
 
-If you want any of the features listed in the 'Customization' (Motion notfication, download/upload, cleanup) that can be done in one of two ways:
+If you want any of the features listed in the 'Customization' (Motion notfication, download/upload, cleanup) that can be done in one of 3 ways:
 
 ##### Option 1
 

@@ -62,10 +62,11 @@ If you want any of the features listed in the 'Customization' (Motion notficatio
 Run a script from a computer to detect if our tools are running on the device (over the network using telnet connection), if not, the script will connect by telnet and run our tools from the SD card.
 
 The setup is simple:
-1. Download the repository files from the Code->Download ZIP button above.
+1. Download the repository files (from the Code->Download ZIP button above) or clone it with git.
 2. Extract the zip on a computer and copy the contents of the `mmc` directory into the SD card (it should have been FAT32 formatted).
-3. On the SD card, adjust the log_parser.sh file to your needs (if using motion detection), and adjust cleanup.cgi to your needs.
-4. On a computer of your choice, run the `initcheck.sh` script to start the tools on the device. This script will need to be executed every time the device is rebooted, so you could run it on a schedule to ensure the device is always running the tools.
+3. SEPARATELY download busybox from this link to the SD card: https://github.com/guino/LSC1080P/blob/main/mmc/busybox?raw=true
+4. On the SD card, adjust the log_parser.sh file to your needs (if using motion detection), and adjust cleanup.cgi to your needs.
+5. On a computer of your choice, run the `initcheck.sh` script to start the tools on the device. This script will need to be executed every time the device is rebooted, so you could run it on a schedule to ensure the device is always running the tools.
 
 NOTE: I have not made a windows version of the initcheck.sh script but it should be possible to make a similar script.
 

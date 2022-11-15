@@ -70,7 +70,7 @@ The setup is simple:
 
 NOTE: I have not made a windows version of the initcheck.sh script but it should be possible to make a similar script.
 
-##### Option 2 (Still unverified -- waiting on my heat gun)
+##### Option 2 (Still unverified -- my device got bricked before I could test this)
 
 Modify the flash to run a script in the SD card when the device starts up without a need for anything to be running/monitoring the device from a separate machine.
 There are risks involved with this approach and you should consider that custominzation usually involves integration with another machine -- that machine could be easily setup with option 1 that requires no changes in the flash, so that is what I recommend.
@@ -114,7 +114,7 @@ cd /usr/bin
 mksquashfs squashfs-root/ newroot -comp xz
 ```
 * Using a heat gun remove the flash chip
-* Dump the firmware using the hardware programmer
+* Dump the firmware using the hardware programmer. The chip on this device is not very known and flashrom (linux) failed to recognize it -- NeoProgrammer for Windows seemed to find it but under a different chip name, in the end I was able to read/write it with the XMC->XM25QH64A chip selected.
 * Identify the address of the rootfs with `binwalk flash.bin`, it will look like this (find the Squashfs filesystem):
 ```
 2490368       0x260000        Squashfs filesystem, little endian, version 4.0, compression:xz, size: 4671622 bytes, 222 inodes, blocksize: 131072 bytes, created: 2022-04-27 11:38:29
@@ -124,21 +124,22 @@ mksquashfs squashfs-root/ newroot -comp xz
 dd if=newroot of=flash.bin conv=notrunc bs=1 seek=2490368
 ```
 NOTE: the seek= parameter should be the first number listed in binwalk for the Squashfs line.
+* Write the modified flash.bin to the chip -- make sure to VERIFY it during the write (had I done that my device could still be working since I believe I damaged my board after successfully removing and soldering the chip back once, but my flash was corrupt because I didn't verify it).
 * Solder the chip back with the heatgun
 
-The device should automatically tun the tools when booting up (no need for running a script from another machine).
+The device should automatically run the tools when booting up (no need for running a script from another machine).
 
 ##### Option 3 (Bricked my device trying to do it)
 
-I was able to write some data to the flash chip in telnet, so I'm hoping we can flash the changes in the same way, HOEWEVER, when attempting to apply the changes to my device I noticed the new root was not correctly written to the flash.
-In my attempts to correctly write the new root or restore the orinal one, the device froze up (probably watchdog reset due to long calls during flash write) and it no longer boots due to the corrupt root fs in the flash (bricked).
+I was able to write some data to the flash chip in telnet, so I was hoping to flash changes in the same way, HOEWEVER, when attempting to apply the changes to my device I noticed the new root was not correctly written to the flash (corrupted data).
+In my attempts to correctly write the new root or restore the orinal one, the device froze up (probably watchdog reset due to long calls during flash write) and it would no longer boot due to the corrupt root fs in the flash (bricked).
 
-I have ordered a decent heat gun and hopefully will be able to remove/repair the flash with my programmer (disconnecting pin 6 of the chip was NOT enough to use the programmer on this device).
+I then ordered a decent heat gun and removed the flash chip to fix with my programmer but I believe I damaged something else in the multiple attempts to get the flash corrected. I originally thought that disconnecting pin 6 of the chip was NOT enough to use the programmer on this device, but this may have worked had I know the flash chip was just not being recognized by linux flash rom (I thought it wasn't recognizing it because it was still soldered onto the board).
 
-Assuming my device works again I will try to iron-out what needs to happen to make this work.
+Since my device no longer works (despite the flash being correct and being recognized by the board), I have no way of trying to make this option work. I can tell my device recognizes the flash because it shows different errors with and without the flash chip in it, I know the data is correct because I verified it, but it isn't even getting to the point of trying to load the kernel anymore -- just fails after an 'initializing DDR mesage' with an error 216.
 
 #### Serial Access Note
 
-One thing to mention about this device: It is NOT worth trying to solder wires to get UART access to this device -- the bootloader has a zero delay setting that doesn't allow us to interact with it.
+One thing to mention about this device: It is NOT worth trying to solder wires to get UART access to this device -- the bootloader has a zero delay setting that doesn't allow us to interact with it. The only benefit from having the serial port is to see the device boot messages (uboot/kernel).
 
 It may be possible to adjust the boot delay setting in telnet (flash write command) and then use the bootloader by connecting to the serial port. I already have wires in place so I'll try it when/if my device is back in operation.

@@ -49,6 +49,7 @@ This is a quick review of pros and cons of this device:
 * Easy way to enable telnet with known credentials (no changes needed)
 
 ##### Cons
+* No RTSP Audio (Reported by user, I did not personally check it before my device died)
 * No way to disable RTSP (potential security risk, though most users will see this as a benefit)
 * No way to run startup script from SD card automatically without modifying flash firmware
 * No current method for 'snapshot' (snap.cgi/mjpeg.cgi) -- look at rtsp2jpeg repo for as an alternative

@@ -69,7 +69,9 @@ The setup is simple:
 4. On the SD card, adjust the log_parser.sh file to your needs (if using motion detection), and adjust cleanup.cgi to your needs.
 5. On a computer of your choice, run the `initcheck.sh` script to start the tools on the device. This script will need to be executed every time the device is rebooted, so you could run it on a schedule to ensure the device is always running the tools.
 
-NOTE: I have not made a windows version of the initcheck.sh script but it should be possible to make a similar script.
+NOTE: It has been reported that some firmware versions may delete the SD card files unless they're made read-only, I have not had this issue on 7.6.32 firmware but it should be safe to do it on any firmware.
+
+NOTE2: I have not made a windows version of the initcheck.sh script but it should be possible to make a similar script.
 
 ##### Option 2 (Still unverified -- my device got bricked before I could test this)
 

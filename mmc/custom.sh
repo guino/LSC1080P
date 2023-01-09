@@ -1,7 +1,7 @@
 #!/bin/sh
 if [ ! -e /tmp/customrun ]; then
  echo custom > /tmp/customrun
- mnt/busybox httpd -c /mnt/httpd.conf -h /mnt/ -p 8080
+ /mnt/busybox httpd -c /mnt/httpd.conf -h /mnt/ -p 8080
  if [ -e /mnt/log_parser.sh ]; then
   DGIOT=$(/mnt/busybox pidof dgiot)
   /mnt/busybox mkfifo /tmp/log

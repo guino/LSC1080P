@@ -11,7 +11,7 @@ I created this repo to catalog information related to the LSC 1080P indoor camer
 #### Hardware
 
 This is what the device looks like (Other brand devices may look similar with the same hardware/software in them):
-![LSC1080P](https://camo.githubusercontent.com/31a795202fd64f16ef4a880a7d721f8527bb8e645da4ef442168fe2a0f2fe03b/68747470733a2f2f616374696f6e2e636f6d2f686f737465646173736574732f434d5341727469636c65496d616765732f37322f39362f333230303031395f383731323837393135353036352d3131315f30312e706e67)
+![LSC1080P](https://github.com/guino/LSC1080P/blob/main/1080indoor.jpg?raw=true)
 
 #### Initial work and Credits
 
